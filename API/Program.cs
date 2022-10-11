@@ -1,5 +1,9 @@
+using Application.Activities;
 using Infrustructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Application.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 //geting connection string
@@ -27,6 +31,8 @@ builder.Services.AddCors(options =>
                           .AllowAnyHeader();
                       });
 });
+builder.Services.AddMediatR(typeof(List.Handler).Assembly);
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 
